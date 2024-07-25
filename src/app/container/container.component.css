@@ -1,0 +1,5 @@
+.container {
+  height: 70vh;
+  background-color: orange;
+  display: flex;
+}

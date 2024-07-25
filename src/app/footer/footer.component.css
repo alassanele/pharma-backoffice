@@ -1,0 +1,4 @@
+footer {
+  background-color: brown;
+  height: calc(100vh - 70vh - 80px);;
+}
