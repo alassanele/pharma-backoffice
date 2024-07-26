@@ -1,0 +1,12 @@
+.product-item {
+  background-color: black;
+  color: white;
+}
+
+.product-item {
+  text-align: center;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+
