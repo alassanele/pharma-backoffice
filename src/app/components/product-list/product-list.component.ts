@@ -11,10 +11,19 @@ export class ProductListComponent implements OnInit{
 
   products:Product[] = [
     {
-      name:"Dolyprane", price:"10",
+      name:"Dolyprane 1", price:"5",
     },
     {
-      name:"Paracétamol", price:"20",
+      name:"Dolyprane", price:"6",
+    },
+    {
+      name:"Dolyprane", price:"7",
+    },
+    {
+      name:"Dolyprane", price:"8",
+    },
+    {
+      name:"Paracétamol", price:"9",
     }
   ];
 
