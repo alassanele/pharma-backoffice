@@ -1,6 +1,7 @@
 .product-item {
-  background-color: black;
-  color: white;
+  /*background-color: black;*/
+  /*color: white;*/
+  display: flex;
 }
 
 .product-item {
@@ -9,4 +10,13 @@
   cursor: pointer;
 }
 
+
+.mat-elevation-z8 {
+  margin: 20px;
+  border-radius: 4px;
+}
+
+table {
+  width: 100%;
+}
 

@@ -1,6 +1,110 @@
-<div class="product-list">
-  <app-product-item
-    *ngFor="let product of products"
-    [product] = "product" >
-  </app-product-item>
+<div class="search-div">
+  <button mat-raised-button>
+    <mat-icon>add</mat-icon>Create
+  </button>
+  <mat-form-field class="search-form-field" floatLabel="always">
+    <input matInput [(ngModel)]="searchKey" placeholder="Search" autocomplete="off"  (keyup)="applyFilter()">
+    <button mat-button matSuffix mat-icon-button arial-label="Clear" *ngIf="searchKey" (click)="onSearchClear()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
 </div>
+
+<div class="mat-elevation-z8">
+  <mat-table [dataSource]="dataSource" matSort>
+
+    <!-- ID Column -->
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Identifiant </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+    </ng-container>
+
+    <!-- Label Column -->
+    <ng-container matColumnDef="label">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Libellé </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.label}} </mat-cell>
+    </ng-container>
+
+    <!-- Label Column -->
+    <ng-container matColumnDef="dci">
+      <mat-header-cell *matHeaderCellDef> DCI </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.dci}} </mat-cell>
+    </ng-container>
+
+    <!-- Label Column -->
+    <ng-container matColumnDef="sectionPrice">
+      <mat-header-cell *matHeaderCellDef> Prix section </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.sectionPrice}} </mat-cell>
+    </ng-container>
+
+    <!-- Label Column -->
+    <ng-container matColumnDef="publicPrice" >
+      <mat-header-cell *matHeaderCellDef> Prix public </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.publicPrice}} </mat-cell>
+    </ng-container>
+
+    <!-- Label Column -->
+    <ng-container matColumnDef="cip">
+      <mat-header-cell *matHeaderCellDef > CIP </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.cip}} </mat-cell>
+    </ng-container>
+
+    <!-- Label Column -->
+    <ng-container matColumnDef="ucd" >
+      <mat-header-cell *matHeaderCellDef> UCD </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.ucd}} </mat-cell>
+    </ng-container>
+
+    <!-- Label Column -->
+    <ng-container matColumnDef="tva" >
+      <mat-header-cell *matHeaderCellDef> TVA </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.tva}} </mat-cell>
+    </ng-container>
+
+    <!-- Label Column -->
+    <ng-container matColumnDef="quantiteStock" >
+      <mat-header-cell *matHeaderCellDef> Quantité stock </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.quantiteStock}} </mat-cell>
+    </ng-container>
+
+    <!-- Label Column -->
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <button mat-icon-button><mat-icon>launch</mat-icon></button>
+        <button mat-icon-button color="warn"><mat-icon>delete_outline</mat-icon></button>
+      </mat-cell>
+    </ng-container>
+
+
+    <!-- Label Column -->
+
+  <ng-container matColumnDef="loading">
+    <mat-footer-cell *matFooterCellDef colspan="6">
+      Loading data...
+    </mat-footer-cell>
+  </ng-container>
+
+
+ <ng-container matColumnDef="noData">
+   <mat-footer-cell *matFooterCellDef colspan="6">
+     No data...
+   </mat-footer-cell>
+ </ng-container>
+
+
+    <!-- Header and Row Declarations -->
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+  <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{ 'hide':dataSource!=null}"></mat-footer-row>
+
+  <mat-footer-row *matFooterRowDef="['noData']" [ngClass]="{ 'hide':!(dataSource!=null && dataSource.data.length == 0)}"></mat-footer-row>
+
+
+  </mat-table>
+
+ <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="[5]" showFirstLastButtons></mat-paginator>
+
+</div>
+
