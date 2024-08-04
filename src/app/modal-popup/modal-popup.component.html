@@ -1,0 +1,17 @@
+<h1 mat-dialog-title>Employee</h1>
+<form [formGroup]="form" (ngSubmit)="saveProduct()">
+  <div mat-dialog-content>
+    <mat-form-field>
+      <mat-label>Libellé</mat-label>
+      <input placeholder="label" matInput formControlName="label">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>DCI</mat-label>
+      <input placeholder="DCI" matInput formControlName="dci">
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+    <button type="submit" mat-raised-button color="primary" cdkFocusInitial>Save</button>
+  </div>
+</form>

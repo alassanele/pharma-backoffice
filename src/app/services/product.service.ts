@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable, Subject,tap } from 'rxjs';
 
 import { Product } from '../models/product';
 
@@ -7,6 +9,9 @@ import { Product } from '../models/product';
 })
 export class ProductService {
 
+  apiurl = 'http://localhost:8080/products';
+
+  /*
   private products:Product[] = [
     {
       id: 1,
@@ -74,13 +79,23 @@ export class ProductService {
       tva: "10",
       quantiteStock: 15
     }
-  ];
+  ];*/
 
-  constructor() { }
+  constructor(private http: HttpClient) {
 
-  getProducts(): Product[] {
-    return this.products;
+  }
+
+  private _refreshrequired=new Subject<void>();
+
+  get RequiredRefresh(){
+    return this._refreshrequired;
+  }
+
+  getProducts(): Observable<Product[]> {
+    //return this.products;
     //return this.http.get<Product[]>(this.urlApi);
+
+    return this.http.get<Product[]>(this.apiurl);
   }
 
   /*
@@ -89,15 +104,49 @@ export class ProductService {
   }*/
 
   editProduct(idProduct: number)  {
-
+    return this.http.get(this.apiurl+'/'+idProduct);
   }
 
   addProduct(product: Product)  {
-
+    return this.http.post(this.apiurl, product).pipe(
+      tap(()=>{
+        this.RequiredRefresh.next();
+      })
+    );
   }
 
   deleteProduct(idProduct: number) {
-
+    return this.http.delete(this.apiurl+'/'+idProduct);
   }
+
+
+  /*
+
+  private _refreshrequired=new Subject<void>();
+  get RequiredRefresh(){
+    return this._refreshrequired;
+  }
+
+  GetEmployee(): Observable<Employee> {
+    return this.http.get<Employee>(this.apiurl);
+  }
+  GetEmployeebycode(code:any){
+    return this.http.get(this.apiurl+'/'+code);
+  }
+  Remove(code:any){
+    return this.http.delete(this.apiurl+'/'+code);
+  }
+  Save(inputdata:any){
+    return this.http.post(this.apiurl,inputdata).pipe(
+      tap(()=>{
+        this.RequiredRefresh.next();
+      })
+    );
+  }
+
+  GetDes(){
+    return this.http.get('https://localhost:44308/Designation');
+  }
+   */
 
 }

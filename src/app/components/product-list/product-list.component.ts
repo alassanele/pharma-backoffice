@@ -3,10 +3,13 @@ import { Component, OnInit, ViewChild, AfterViewInit, OnDestroy } from '@angular
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import {MatSort} from '@angular/material/sort';
+import {MatDialog, MatDialogConfig} from '@angular/material/dialog'
 
 import { Product } from '../../models/product';
 
 import { ProductService } from '../../services/product.service';
+
+import { ModalPopupComponent } from './../../modal-popup/modal-popup.component';
 
 // @ts-ignore
 @Component({
@@ -28,15 +31,13 @@ export class ProductListComponent implements OnInit, AfterViewInit{//, OnDestroy
 
   searchKey: string = '';
 
-  //productsSub : Subscription | undefined;
-
   ngAfterViewInit(): void {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
   }
 
-  constructor(private productService: ProductService) {
-    this.products = productService.getProducts();
+  constructor(private productService: ProductService,
+              private dialog: MatDialog) {
   }
 
   /*
@@ -46,28 +47,24 @@ export class ProductListComponent implements OnInit, AfterViewInit{//, OnDestroy
 */
 
   ngOnInit(): void {
-    this.dataSource = new MatTableDataSource(this.productService.getProducts());
-    /*
-    this.productsSub = this.productService.getProducts().subscribe({
-      next:(products: Product[])=> {
-        this.dataSource = new MatTableDataSource( products);
-      },
-      error:(error:any)=> {
-        console.log("Error : ", error)
-      },
-      complete:()=> {
-        console.log("Complete !")
-      },
-    }
-  )*/
+    this.getProducts();
+  }
 
+  getProducts(){
+    this.productService.getProducts().subscribe(result => {
+      this.products = result;
+
+      this.dataSource = new MatTableDataSource<Product>(this.products)
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    });
   }
 
   /*
   viewProduct() {
     console.log('View Product');
   }*/
-  
+
 
   onSearchClear(){
     this.searchKey = '';
@@ -77,6 +74,40 @@ export class ProductListComponent implements OnInit, AfterViewInit{//, OnDestroy
 
   applyFilter(){
     this.dataSource.filter = this.searchKey.trim().toLowerCase();
+  }
+
+
+  onCreate(){
+    //this.service.initializeFormGroup();
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = "60%";
+
+    //this.dialog.open("ProductComponent", dialogConfig);
+  }
+
+  onEdit(row: Product){
+    this.OpenDialog('1000ms','600ms',row.id)
+  }
+
+  onDelete(row: Product){
+    this.productService.deleteProduct(row.id).subscribe(result => {
+      this.getProducts();
+      //alertify.success("Removed successfully.")
+    });
+  }
+
+  OpenDialog(enteranimation: any, exitanimation: any,code:any) {
+
+    this.dialog.open(ModalPopupComponent, {
+      enterAnimationDuration: enteranimation,
+      exitAnimationDuration: exitanimation,
+      width: "50%",
+      data:{
+        empcode:code
+      }
+    })
   }
 
 }
