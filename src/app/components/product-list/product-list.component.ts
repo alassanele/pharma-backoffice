@@ -40,12 +40,6 @@ export class ProductListComponent implements OnInit, AfterViewInit{//, OnDestroy
               private dialog: MatDialog) {
   }
 
-  /*
-  ngOnDestroy(): void {
-       this.productsSub?.unsubscribe();
-     }
-*/
-
   ngOnInit(): void {
     this.getProducts();
   }
@@ -59,12 +53,6 @@ export class ProductListComponent implements OnInit, AfterViewInit{//, OnDestroy
       this.dataSource.sort = this.sort;
     });
   }
-
-  /*
-  viewProduct() {
-    console.log('View Product');
-  }*/
-
 
   onSearchClear(){
     this.searchKey = '';
@@ -98,14 +86,14 @@ export class ProductListComponent implements OnInit, AfterViewInit{//, OnDestroy
     });
   }
 
-  OpenDialog(enteranimation: any, exitanimation: any,code:any) {
+  OpenDialog(enteranimation: any, exitanimation: any,idProduct:any) {
 
     this.dialog.open(ModalPopupComponent, {
       enterAnimationDuration: enteranimation,
       exitAnimationDuration: exitanimation,
       width: "50%",
       data:{
-        empcode:code
+        id:idProduct
       }
     })
   }

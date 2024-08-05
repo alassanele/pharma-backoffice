@@ -1,9 +1,9 @@
 <div class="search-div">
   <button mat-raised-button (click)="onCreate()">
-    <mat-icon>add</mat-icon>Create
+    <mat-icon>add</mat-icon>Créer un produit
   </button>
   <mat-form-field class="search-form-field" floatLabel="always">
-    <input matInput [(ngModel)]="searchKey" placeholder="Search" autocomplete="off"  (keyup)="applyFilter()">
+    <input matInput [(ngModel)]="searchKey" placeholder="Rechercher un produit" autocomplete="off"  (keyup)="applyFilter()">
     <button mat-button matSuffix mat-icon-button arial-label="Clear" *ngIf="searchKey" (click)="onSearchClear()">
       <mat-icon>close</mat-icon>
     </button>
@@ -14,12 +14,12 @@
   <mat-table [dataSource]="dataSource" matSort>
 
     <!-- ID Column -->
-    <ng-container matColumnDef="id">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Identifiant </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
-    </ng-container>
+   <ng-container matColumnDef="id">
+     <mat-header-cell *matHeaderCellDef mat-sort-header> Identifiant </mat-header-cell>
+     <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+   </ng-container>
 
-    <!-- Label Column -->
+   <!-- Label Column -->
     <ng-container matColumnDef="label">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Libellé </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.label}} </mat-cell>

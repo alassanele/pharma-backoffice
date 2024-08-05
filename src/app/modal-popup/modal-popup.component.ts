@@ -19,8 +19,8 @@ export class ModalPopupComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadProducts();
-    if(this.data.empcode!=null && this.data.empcode!=''){
-      this.loadEditProduct(this.data.empcode);
+    if(this.data.id!=null && this.data.id!=''){
+      this.loadEditProduct(this.data.id);
     }
   }
 
@@ -30,9 +30,10 @@ export class ModalPopupComponent implements OnInit {
     });
   }
 
-  loadEditProduct(code: any) {
-    this.productService.editProduct(code).subscribe(item => {
+  loadEditProduct(idProduct: any) {
+    this.productService.editProduct(idProduct).subscribe(item => {
       this.editdata = item;
+      console.log(this.editdata);
       this.initializeFormGroup();
     });
   }
@@ -42,37 +43,26 @@ export class ModalPopupComponent implements OnInit {
     //$key: new FormControl(null),
     label: new FormControl('', Validators.required),
     dci: new FormControl('', Validators.required),
+    sectionPrice: new FormControl('', Validators.required),
+    publicPrice: new FormControl('', Validators.required),
+    cip: new FormControl(),
+    ucd: new FormControl(),
+    tva: new FormControl(),
+    quantiteStock: new FormControl()
   });
 
   initializeFormGroup() {
     this.form.setValue({
       label:this.editdata.label,
-      dci:this.editdata.dci
-    })
-    /*
-    this.form.setValue({
-      $key: null,
-      fullName: '',
-      email: '',
-      mobile: '',
-      city: '',
-      gender: '1',
-      department: 0,
-      hireDate: '',
-      isPermanent: false
-    });*/
+      dci:this.editdata.dci,
+      sectionPrice:this.editdata.sectionPrice,
+      publicPrice:this.editdata.publicPrice,
+      cip:this.editdata.cip,
+      ucd:this.editdata.ucd,
+      tva:this.editdata.tva,
+      quantiteStock:this.editdata.quantiteStock
+    });
   }
-
-  /*
-  Reactiveform = new FormGroup({
-    code: new FormControl({ value: 0, disabled: true }),
-    name: new FormControl("", Validators.required),
-    email: new FormControl("", Validators.required),
-    phone: new FormControl("", Validators.required),
-    designation: new FormControl(""),
-    gender: new FormControl("M"),
-    isactive: new FormControl(true)
-  });*/
 
   saveProduct() {
     if (this.form.valid) {
