@@ -66,13 +66,7 @@ export class ProductListComponent implements OnInit, AfterViewInit{//, OnDestroy
 
 
   onCreate(){
-    //this.service.initializeFormGroup();
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = true;
-    dialogConfig.autoFocus = true;
-    dialogConfig.width = "60%";
-
-    //this.dialog.open("ProductComponent", dialogConfig);
+    this.OpenDialog('1000ms','600ms','')
   }
 
   onEdit(row: Product){

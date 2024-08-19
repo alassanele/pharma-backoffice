@@ -17,6 +17,11 @@ footer, header {
   align-items: center;
 }
 
+header{
+  position: sticky;
+  top: 0;
+}
+
 html, body { height: 100%; }
 body { margin: 0 30px 0 30px; font-family: Roboto, "Helvetica Neue", sans-serif; }
 

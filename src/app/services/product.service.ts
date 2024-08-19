@@ -29,11 +29,8 @@ export class ProductService {
   }
 
   addProduct(product: Product)  {
-    return this.http.post(this.apiurl, product).pipe(
-      tap(()=>{
-        this.RequiredRefresh.next();
-      })
-    );
+    console.log("product : ",product);
+    return this.http.post(this.apiurl, product);
   }
 
   deleteProduct(idProduct: number) {

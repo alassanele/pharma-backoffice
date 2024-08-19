@@ -66,11 +66,11 @@ export class ModalPopupComponent implements OnInit {
 
   saveProduct() {
     if (this.form.valid) {
-      this.productService.addProduct(this.form.value.name).subscribe(result => {
+      this.productService.addProduct(this.form.value).subscribe(result => {
         this.respdata = result;
         if (this.respdata.result == 'pass') {
           //alertify.success("saved successfully.")
-          this.dialogref.close();
+          this.dialogref.close(); 
         }
       });
 

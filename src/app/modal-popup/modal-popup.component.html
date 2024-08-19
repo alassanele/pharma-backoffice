@@ -1,6 +1,6 @@
 <h1 mat-dialog-title>Produit</h1>
 <form [formGroup]="form" (ngSubmit)="saveProduct()">
-  <div mat-dialog-content>
+  <div mat-dialog-content class="popup-product">
     <mat-form-field>
       <mat-label>Libellé</mat-label>
       <input placeholder="label" matInput formControlName="label">
@@ -34,7 +34,7 @@
       <input placeholder="Quantité stock" matInput formControlName="quantiteStock">
     </mat-form-field>
   </div>
-  <div mat-dialog-actions>
+  <div mat-dialog-actions class="popup-product-button">
     <button mat-raised-button color="warn" mat-dialog-close>Fermer</button>
     <button type="submit" mat-raised-button color="primary" cdkFocusInitial>Sauvegarder</button>
   </div>
