@@ -15,10 +15,12 @@
     <mat-table [dataSource]="dataSource" matSort>
 
       <!-- ID Column -->
+      <!--
      <ng-container matColumnDef="id">
        <mat-header-cell *matHeaderCellDef mat-sort-header> Identifiant </mat-header-cell>
        <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
      </ng-container>
+     -->
 
      <!-- Label Column -->
       <ng-container matColumnDef="label">
@@ -34,13 +36,13 @@
 
       <!-- Label Column -->
       <ng-container matColumnDef="sectionPrice">
-        <mat-header-cell *matHeaderCellDef> Prix section </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef> Prix d'achat </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.sectionPrice}} </mat-cell>
       </ng-container>
 
       <!-- Label Column -->
       <ng-container matColumnDef="publicPrice" >
-        <mat-header-cell *matHeaderCellDef> Prix public </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef> Prix de vente </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.publicPrice}} </mat-cell>
       </ng-container>
 
@@ -68,9 +70,14 @@
         <mat-cell *matCellDef="let element"> {{element.quantiteStock}} </mat-cell>
       </ng-container>
 
+      <ng-container matColumnDef="expirationDate">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Date d'expiration </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.expirationDate}} </mat-cell>
+      </ng-container>
+
       <!-- Label Column -->
       <ng-container matColumnDef="actions">
-        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
         <mat-cell *matCellDef="let element">
           <button mat-icon-button (click)="onEdit(element)" style="margin-right: 5px;"><mat-icon>launch</mat-icon></button>
           <button mat-icon-button color="warn" (click)="onDelete(element)"><mat-icon>delete_outline</mat-icon></button>

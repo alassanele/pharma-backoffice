@@ -8,4 +8,5 @@ export interface Product {
   ucd:string;
   tva: string;
   quantiteStock: number;
+  expirationDate: Date;
 }

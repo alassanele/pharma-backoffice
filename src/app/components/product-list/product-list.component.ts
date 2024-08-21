@@ -22,7 +22,7 @@ export class ProductListComponent implements OnInit, AfterViewInit{//, OnDestroy
   products:Product[] = [];
 
   displayedColumns: string[]=
-    ['id', 'label','dci','sectionPrice','publicPrice','cip','ucd','tva','quantiteStock','actions'];
+    ['label','dci','sectionPrice','publicPrice','cip','ucd','tva','quantiteStock', 'expirationDate','actions'];
 
   dataSource = new MatTableDataSource<Product>;
 
