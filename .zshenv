@@ -13,3 +13,4 @@ export DOCKER_HOST=unix://$HOME/docker.sock
 export DOCKER_HOST=unix://$HOME/docker.sock
 export DOCKER_HOST=unix://$HOME/docker.sock
 export DOCKER_HOST=unix://$HOME/docker.sock
+export DOCKER_HOST=unix://$HOME/docker.sock

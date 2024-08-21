@@ -68,12 +68,9 @@ export class ModalPopupComponent implements OnInit {
     if (this.form.valid) {
       this.productService.addProduct(this.form.value).subscribe(result => {
         this.respdata = result;
-        if (this.respdata.result == 'pass') {
-          //alertify.success("saved successfully.")
-          this.dialogref.close(); 
-        }
+        //alertify.success("saved successfully.")
+        this.dialogref.close();
       });
-
     } else {
       //alertify.error("Please Enter valid data")
     }
