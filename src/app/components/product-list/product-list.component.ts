@@ -3,7 +3,7 @@ import { Component, OnInit, ViewChild, AfterViewInit, OnDestroy } from '@angular
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import {MatSort} from '@angular/material/sort';
-import {MatDialog, MatDialogConfig} from '@angular/material/dialog'
+import {MatDialog} from '@angular/material/dialog'
 
 import { Product } from '../../models/product';
 
@@ -59,11 +59,9 @@ export class ProductListComponent implements OnInit, AfterViewInit{//, OnDestroy
     this.applyFilter();
   }
 
-
   applyFilter(){
     this.dataSource.filter = this.searchKey.trim().toLowerCase();
   }
-
 
   onCreate(){
     this.OpenDialog('1000ms','600ms','')
