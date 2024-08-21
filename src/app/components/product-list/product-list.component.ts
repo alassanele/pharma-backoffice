@@ -64,11 +64,38 @@ export class ProductListComponent implements OnInit, AfterViewInit{//, OnDestroy
   }
 
   onCreate(){
-    this.OpenDialog('1000ms','600ms','')
+    //this.openDialog('1000ms','600ms','')
+
+    const dialogRef = this.dialog.open(ModalPopupComponent, {
+      enterAnimationDuration: '1000ms',
+      exitAnimationDuration: '600ms',
+      width: "50%",
+      data:{
+        id:''
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.getProducts();
+    });
   }
 
   onEdit(row: Product){
-    this.OpenDialog('1000ms','600ms',row.id)
+    //this.openDialog('1000ms','600ms',row.id);
+
+    const dialogRef = this.dialog.open(ModalPopupComponent, {
+      enterAnimationDuration: '1000ms',
+      exitAnimationDuration: '600ms',
+      width: "50%",
+      data:{
+        id:row.id
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.getProducts();
+    });
+
   }
 
   onDelete(row: Product){
@@ -78,7 +105,7 @@ export class ProductListComponent implements OnInit, AfterViewInit{//, OnDestroy
     });
   }
 
-  OpenDialog(enteranimation: any, exitanimation: any,idProduct:any) {
+  openDialog(enteranimation: any, exitanimation: any,idProduct:any) {
 
     this.dialog.open(ModalPopupComponent, {
       enterAnimationDuration: enteranimation,

@@ -40,7 +40,7 @@ export class ModalPopupComponent implements OnInit {
 
 
   form: FormGroup = new FormGroup({
-    //$key: new FormControl(null),
+    id: new FormControl(null),
     label: new FormControl('', Validators.required),
     dci: new FormControl('', Validators.required),
     sectionPrice: new FormControl('', Validators.required),
@@ -53,6 +53,7 @@ export class ModalPopupComponent implements OnInit {
 
   initializeFormGroup() {
     this.form.setValue({
+      id:this.editdata.id,
       label:this.editdata.label,
       dci:this.editdata.dci,
       sectionPrice:this.editdata.sectionPrice,
