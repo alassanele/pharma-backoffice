@@ -15,3 +15,7 @@
   display: flex;
   justify-content: flex-end;
 }
+
+.mdc-dialog__content>:first-child {
+  margin-top: 25px;
+}

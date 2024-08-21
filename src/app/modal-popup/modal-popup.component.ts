@@ -17,10 +17,13 @@ export class ModalPopupComponent implements OnInit {
   respdata: any;
   editdata: any;
 
+  title:String = "Ajouter un produit";
+
   ngOnInit(): void {
     this.loadProducts();
     if(this.data.id!=null && this.data.id!=''){
       this.loadEditProduct(this.data.id);
+      this.title = "Modifier un produit";
     }
   }
 
