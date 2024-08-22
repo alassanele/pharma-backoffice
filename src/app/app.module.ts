@@ -20,6 +20,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {HttpClientModule} from '@angular/common/http';
 import { ModalPopupComponent } from './modal-popup/modal-popup.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatInputModule,
     MatDialogModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatDatepickerModule
   ],
   providers: [
     provideAnimationsAsync()

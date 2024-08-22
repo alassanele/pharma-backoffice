@@ -9,36 +9,40 @@
       <mat-label>DCI</mat-label>
       <input placeholder="DCI" matInput formControlName="dci">
     </mat-form-field>
-    <mat-form-field>
-      <mat-label>Prix section</mat-label>
-      <input placeholder="Prix section" matInput formControlName="sectionPrice">
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Prix public</mat-label>
-      <input placeholder="Prix public" matInput formControlName="publicPrice">
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>CIP</mat-label>
-      <input placeholder="CIP" matInput formControlName="cip">
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>UCD</mat-label>
-      <input placeholder="UCD" matInput formControlName="ucd">
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>TVA</mat-label>
-      <input placeholder="TVA" matInput formControlName="tva">
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Quantité stock</mat-label>
-      <input placeholder="Quantité stock" matInput formControlName="quantiteStock">
-    </mat-form-field>
-    <!--
+    <div class="price">
+      <mat-form-field>
+        <mat-label>CIP</mat-label>
+        <input placeholder="CIP" matInput formControlName="cip">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>UCD</mat-label>
+        <input placeholder="UCD" matInput formControlName="ucd">
+      </mat-form-field>
+    </div>
+    <div class="price">
+      <mat-form-field class="mat-form-field-section-price">
+        <mat-label>Prix section</mat-label>
+        <input placeholder="Prix section" matInput formControlName="sectionPrice">
+      </mat-form-field>
+      <mat-form-field class="mat-form-field-public-price">
+        <mat-label>Prix public</mat-label>
+        <input placeholder="Prix public" matInput formControlName="publicPrice">
+      </mat-form-field>
+    </div>
+    <div class="price">
+      <mat-form-field>
+        <mat-label>TVA</mat-label>
+        <input placeholder="TVA" matInput formControlName="tva">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Quantité stock</mat-label>
+        <input placeholder="Quantité stock" matInput formControlName="quantiteStock">
+      </mat-form-field>
+    </div>
     <mat-form-field>
       <mat-label>Date d'expiration</mat-label>
       <input placeholder="Date d'expiration" matInput formControlName="expirationDate">
     </mat-form-field>
-    -->
   </div>
   <div mat-dialog-actions class="popup-product-button">
     <button mat-raised-button color="warn" mat-dialog-close style="margin-right: 5px;">Fermer</button>

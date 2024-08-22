@@ -19,3 +19,24 @@
 .mdc-dialog__content>:first-child {
   margin-top: 25px;
 }
+
+.price {
+  display: flex;
+  justify-content: space-between; /* Espace entre les éléments */
+  align-items: center; /* Aligne les éléments verticalement au centre */
+  width: 100%; /* Assure que le conteneur prend toute la largeur disponible */
+  padding: 0; /* Supprime le padding du conteneur */
+  margin: 0; /* Supprime la marge du conteneur */
+}
+
+.mat-form-field-section-price {
+  padding: 0; /* Supprime le padding */
+  min-width: 0;
+  margin: 0px;
+}
+
+.mat-form-field-public-price {
+  padding: 0; /* Supprime le padding */
+  min-width: 0;
+  margin: 0px;
+}
