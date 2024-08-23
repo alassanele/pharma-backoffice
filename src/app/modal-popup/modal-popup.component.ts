@@ -19,6 +19,10 @@ export class ModalPopupComponent implements OnInit {
 
   title:String = "Ajouter un produit";
 
+  minDate = new Date(2020, 0, 1); // 1er janvier 2020
+
+  selectedDate: Date;
+
   ngOnInit(): void {
     this.loadProducts();
     if(this.data.id!=null && this.data.id!=''){
@@ -80,6 +84,11 @@ export class ModalPopupComponent implements OnInit {
     } else {
       //alertify.error("Please Enter valid data")
     }
+  }
+
+  onDateChange(event: any) {
+    this.selectedDate = event.value;
+    console.log('Date sélectionnée:', this.selectedDate);
   }
 
 }

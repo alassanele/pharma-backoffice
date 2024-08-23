@@ -63,3 +63,8 @@
   /*width: 80%; /* Par défaut, prend 80% de la largeur du conteneur parent */
   /*max-width: 500px; /* Largeur maximale par défaut */
 }
+
+::ng-deep .mat-calendar {
+  background-color: #f5f5f5; /* Couleur de fond du calendrier */
+  color: #333; /* Couleur du texte */
+}
