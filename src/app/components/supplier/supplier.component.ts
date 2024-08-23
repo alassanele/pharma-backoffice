@@ -85,7 +85,7 @@ export class SupplierComponent implements OnInit, AfterViewInit{//, OnDestroy{
     const dialogRef = this.dialog.open(ModalPopupSupplierComponent, {
       enterAnimationDuration: '1000ms',
       exitAnimationDuration: '600ms',
-      width: "50%",
+      width: "30%",
       data:{
         id:row.id
       }
@@ -109,7 +109,7 @@ export class SupplierComponent implements OnInit, AfterViewInit{//, OnDestroy{
     this.dialog.open(ModalPopupSupplierComponent, {
       enterAnimationDuration: enteranimation,
       exitAnimationDuration: exitanimation,
-      width: "50%",
+      width: "30%",
       data:{
         id:idProduct
       }

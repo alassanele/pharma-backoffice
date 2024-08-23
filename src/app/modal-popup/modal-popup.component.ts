@@ -48,10 +48,11 @@ export class ModalPopupComponent implements OnInit {
     dci: new FormControl('', Validators.required),
     sectionPrice: new FormControl('', Validators.required),
     publicPrice: new FormControl('', Validators.required),
-    cip: new FormControl(),
-    ucd: new FormControl(),
+    cip: new FormControl('', Validators.required),
+    ucd: new FormControl('', Validators.required),
     tva: new FormControl(),
-    quantiteStock: new FormControl()
+    quantiteStock: new FormControl(),
+    expirationDate: new FormControl('', Validators.required)
   });
 
   initializeFormGroup() {
@@ -64,7 +65,8 @@ export class ModalPopupComponent implements OnInit {
       cip:this.editdata.cip,
       ucd:this.editdata.ucd,
       tva:this.editdata.tva,
-      quantiteStock:this.editdata.quantiteStock
+      quantiteStock:this.editdata.quantiteStock,
+      expirationDate:this.editdata.expirationDate
     });
   }
 
