@@ -1,0 +1,25 @@
+<h1 mat-dialog-title>{{title}}</h1>
+<form [formGroup]="form" (ngSubmit)="saveSupplier()">
+  <div mat-dialog-content class="popup-supplier">
+    <mat-form-field class="custom-mat-form-field">
+      <mat-label>Libellé</mat-label>
+      <input placeholder="Nom" matInput formControlName="name">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Adresse</mat-label>
+      <input placeholder="Adresse" matInput formControlName="address">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Numéro de téléphone</mat-label>
+      <input placeholder="Numéro de téléphone" matInput formControlName="numberPhone">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input placeholder="Email" matInput formControlName="email">
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions class="popup-product-button">
+    <button mat-raised-button color="warn" mat-dialog-close style="margin-right: 5px;">Fermer</button>
+    <button type="submit" mat-raised-button color="primary" cdkFocusInitial>Sauvegarder</button>
+  </div>
+</form>

@@ -21,6 +21,8 @@ import {HttpClientModule} from '@angular/common/http';
 import { ModalPopupComponent } from './modal-popup/modal-popup.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import { SupplierComponent } from './components/supplier/supplier.component';
+import { ModalPopupSupplierComponent } from './modal/modal-popup-supplier/modal-popup-supplier.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     ProductComponent,
     ProductListComponent,
     ProductItemComponent,
-    ModalPopupComponent
+    ModalPopupComponent,
+    SupplierComponent,
+    ModalPopupSupplierComponent
   ],
   imports: [
     BrowserModule,
