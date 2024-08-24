@@ -25,6 +25,8 @@ import { SupplierComponent } from './components/supplier/supplier.component';
 import { ModalPopupSupplierComponent } from './modal/modal-popup-supplier/modal-popup-supplier.component';
 import { MatNativeDateModule, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MY_DATE_FORMATS } from './models/date-format';
+import { DatePipe } from '@angular/common';
+
 
 @NgModule({
   declarations: [
@@ -37,7 +39,7 @@ import { MY_DATE_FORMATS } from './models/date-format';
     ProductItemComponent,
     ModalPopupComponent,
     SupplierComponent,
-    ModalPopupSupplierComponent
+    ModalPopupSupplierComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,12 +55,13 @@ import { MY_DATE_FORMATS } from './models/date-format';
     HttpClientModule,
     BrowserAnimationsModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
   ],
   providers: [
     provideAnimationsAsync(),
     { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS },
     { provide: MAT_DATE_LOCALE, useValue: 'fr-FR' },
+    DatePipe
   ],
   bootstrap: [AppComponent]
 })

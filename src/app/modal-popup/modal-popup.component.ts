@@ -1,8 +1,10 @@
 import { Component, Inject, OnInit } from '@angular/core';
+import { DatePipe } from '@angular/common'
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ProductService } from '../services/product.service';
 //import * as alertify from 'alertifyjs'
 import { MatDialogRef,MAT_DIALOG_DATA } from '@angular/material/dialog';
+import moment from 'moment';
 
 @Component({
   selector: 'app-modal-popup',
@@ -11,7 +13,7 @@ import { MatDialogRef,MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class ModalPopupComponent implements OnInit {
 
-  constructor(private productService: ProductService, public dialogref: MatDialogRef<ModalPopupComponent>,@Inject(MAT_DIALOG_DATA) public data:any) { }
+  constructor(private productService: ProductService, public datepipe: DatePipe, public dialogref: MatDialogRef<ModalPopupComponent>,@Inject(MAT_DIALOG_DATA) public data:any) { }
 
   products: any;
   respdata: any;
@@ -21,7 +23,9 @@ export class ModalPopupComponent implements OnInit {
 
   minDate = new Date(2020, 0, 1); // 1er janvier 2020
 
-  selectedDate: Date;
+  latestDate: any;
+
+  selectedDate = new Date();
 
   ngOnInit(): void {
     this.loadProducts();
@@ -60,6 +64,8 @@ export class ModalPopupComponent implements OnInit {
   });
 
   initializeFormGroup() {
+    const format = 'DD/MM/YYYY';
+    const dateObject = moment(this.editdata.expirationDate, format).toDate();
     this.form.setValue({
       id:this.editdata.id,
       label:this.editdata.label,
@@ -70,12 +76,17 @@ export class ModalPopupComponent implements OnInit {
       ucd:this.editdata.ucd,
       tva:this.editdata.tva,
       quantiteStock:this.editdata.quantiteStock,
-      expirationDate:this.editdata.expirationDate
+      expirationDate: dateObject
     });
+
   }
 
   saveProduct() {
     if (this.form.valid) {
+      const nameControl = this.form.get('expirationDate');
+      if (nameControl) {
+        nameControl.setValue(this.latestDate);
+      }
       this.productService.addProduct(this.form.value).subscribe(result => {
         this.respdata = result;
         //alertify.success("saved successfully.")
@@ -88,7 +99,10 @@ export class ModalPopupComponent implements OnInit {
 
   onDateChange(event: any) {
     this.selectedDate = event.value;
-    console.log('Date sélectionnée:', this.selectedDate);
+    this.latestDate = this.datepipe.transform(this.selectedDate, 'dd/MM/yyyy');
   }
+
+
+
 
 }
