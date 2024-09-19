@@ -11,7 +11,7 @@ footer, header, .container {
 
 footer, header {
   color: white;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
   display: flex;
   justify-content: center;
   align-items: center;

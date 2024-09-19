@@ -1,0 +1,44 @@
+.odd-row {
+  background-color: #B0F2B6;
+}
+
+.even-row {
+  background-color: #97DFC6;
+}
+
+/* Label Column */
+.label-column {
+  width: 35%; /* 30% width */
+}
+
+/* Quantity Column */
+.quantity-column {
+  width: 10%; /* 10% width */
+}
+
+/* Unit Price Column */
+.unit-price-column {
+  width: 15%; /* 15% width */
+}
+
+/* Discount Column */
+.discount-column {
+  width: 15%; /* 15% width */
+}
+
+/* Total Column */
+.total-column {
+  width: 20%; /* 20% width */
+}
+
+/* Actions Column */
+.actions-column {
+  width: 5%; /* 10% width */
+}
+
+.purchase-container {
+  background-color: antiquewhite;
+  margin:10px;
+  height: 700px;
+}
+

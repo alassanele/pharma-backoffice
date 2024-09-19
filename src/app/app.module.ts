@@ -26,6 +26,7 @@ import { ModalPopupSupplierComponent } from './modal/modal-popup-supplier/modal-
 import { MatNativeDateModule, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MY_DATE_FORMATS } from './models/date-format';
 import { DatePipe } from '@angular/common';
+import { PurchaseComponent } from './components/purchase/purchase.component';
 
 
 @NgModule({
@@ -40,6 +41,7 @@ import { DatePipe } from '@angular/common';
     ModalPopupComponent,
     SupplierComponent,
     ModalPopupSupplierComponent,
+    PurchaseComponent,
   ],
   imports: [
     BrowserModule,
