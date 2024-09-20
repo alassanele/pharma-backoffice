@@ -2,9 +2,11 @@ import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 
 import { Purchase } from '../../models/purchase';
 
-import { Product } from '../../models/product';
+import { Supplier } from '../../models/supplier';
 
 import { ProductService } from '../../services/product.service';
+
+import { SupplierService } from '../../services/supplier.service';
 
 @Component({
   selector: 'app-purchase',
@@ -17,11 +19,19 @@ export class PurchaseComponent implements OnInit{
 
   dataSource: Purchase[] = [];
 
-  constructor(private productService: ProductService) {
+  suppliers:Supplier[] = [];
+  
+  selectedSupplier: number | null = null;
+
+  constructor(private productService: ProductService,
+              private supplierService: SupplierService,) {
   }
 
   ngOnInit(): void {
     this.getProducts();
+    this.supplierService.getSuppliers().subscribe(result => {
+      this.suppliers = result;
+    });
   }
 
   getProducts(){
@@ -52,6 +62,12 @@ export class PurchaseComponent implements OnInit{
     row.total = row.quantity * row.unitPrice * discountMultiplier;
   }
 
+  // Optional: Method to handle the change event
+  onSupplierChange(event: Event) {
+    const supplierElement = event.target as HTMLSelectElement;
+    this.selectedSupplier = Number(supplierElement.id);
+  }
+
   /*
  dataSource: Purchase[] = [
    { id: 1, label: 'Jules', quantity: 1, unitPrice: 12, discount: 0, total: 1000 },
@@ -67,13 +83,11 @@ export class PurchaseComponent implements OnInit{
 
   cancelEditing() {
     this.editedRowIndex = -1;
-  }
-
-  saveRow(row: UserData) {
-    // Perform the save operation here, such as making an API call
-    console.log('Saving row', row);
-    this.editedRowIndex = -1;
   }*/
+
+  onValidate() {
+    console.log('Saving row', this.dataSource);
+  }
 
 
 }

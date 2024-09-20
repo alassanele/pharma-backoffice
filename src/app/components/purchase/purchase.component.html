@@ -1,49 +1,69 @@
 <div class="purchase-container">
-  <mat-table mat-table [dataSource]="dataSource">
-    <!-- Displayed columns -->
-    <ng-container matColumnDef="label">
-      <mat-header-cell *matHeaderCellDef class="label-column">Libellé</mat-header-cell>
-      <mat-cell *matCellDef="let row" class="label-column">{{row.label}}</mat-cell>
-    </ng-container>
+  <div class="label-fournisseur-container">
+    <label>Fournisseur : </label>
+    <select [(ngModel)]="selectedSupplier" (change)="onSupplierChange($event)">
+      <option *ngFor="let supplier of suppliers" [value]="supplier.id">{{ supplier.name }}</option>
+    </select>
+  </div>
 
-    <ng-container matColumnDef="quantity">
-      <mat-header-cell *matHeaderCellDef class="quantity-column">Quantité</mat-header-cell>
-      <mat-cell *matCellDef="let row" class="quantity-column">
-        <ng-container>
-          <input [(ngModel)]="row.quantity" placeholder="Quantité" (ngModelChange)="onQuantityChange(row)">
-        </ng-container>
-      </mat-cell>
-    </ng-container>
+  <div class="table-product">
+    <mat-table mat-table [dataSource]="dataSource">
+      <!-- Displayed columns -->
+      <ng-container matColumnDef="label">
+        <mat-header-cell *matHeaderCellDef class="label-column">Libellé</mat-header-cell>
+        <mat-cell *matCellDef="let row" class="label-column">{{row.label}}</mat-cell>
+      </ng-container>
 
-    <ng-container matColumnDef="unitPrice">
-      <mat-header-cell *matHeaderCellDef class="unit-price-column">Prix unitaire (Franc CFA)</mat-header-cell>
-      <mat-cell *matCellDef="let row" class="unit-price-column">{{row.unitPrice}}</mat-cell>
-    </ng-container>
+      <ng-container matColumnDef="quantity">
+        <mat-header-cell *matHeaderCellDef class="quantity-column">Quantité</mat-header-cell>
+        <mat-cell *matCellDef="let row" class="quantity-column">
+          <ng-container>
+            <input [(ngModel)]="row.quantity" placeholder="Quantité" (ngModelChange)="onQuantityChange(row)" size="3">
+          </ng-container>
+        </mat-cell>
+      </ng-container>
 
-    <ng-container matColumnDef="discount">
-        <mat-header-cell *matHeaderCellDef class="discount-column">Pourcentage (%)</mat-header-cell>
-        <mat-cell *matCellDef="let row" class="discount-column">{{row.discount}} %</mat-cell>
-    </ng-container>
+      <ng-container matColumnDef="unitPrice">
+        <mat-header-cell *matHeaderCellDef class="unit-price-column">Prix unitaire (Franc CFA)</mat-header-cell>
+        <mat-cell *matCellDef="let row" class="unit-price-column">{{row.unitPrice}}</mat-cell>
+      </ng-container>
 
-    <ng-container matColumnDef="total">
-      <mat-header-cell *matHeaderCellDef class="total-column">Total (Franc CFA)</mat-header-cell>
-      <mat-cell *matCellDef="let row" class="total-column">
-        <ng-container>
-          <input [(ngModel)]="row.total" placeholder="Total" disabled="disabled">
-        </ng-container>
-      </mat-cell>
-    </ng-container>
+      <ng-container matColumnDef="discount">
+          <mat-header-cell *matHeaderCellDef class="discount-column">Pourcentage (%)</mat-header-cell>
+          <mat-cell *matCellDef="let row" class="discount-column">{{row.discount}} %</mat-cell>
+      </ng-container>
 
-    <ng-container matColumnDef="actions">
-      <mat-header-cell *matHeaderCellDef class="actions-column">Actions</mat-header-cell>
-      <mat-cell *matCellDef="let element" class="actions-column">
-        <button mat-icon-button color="warn" (click)="onDelete(element)"><mat-icon>delete_outline</mat-icon></button>
-      </mat-cell>
-    </ng-container>
+      <ng-container matColumnDef="total">
+        <mat-header-cell *matHeaderCellDef class="total-column">Total (Franc CFA)</mat-header-cell>
+        <mat-cell *matCellDef="let row" class="total-column">
+          <ng-container>
+            <input [(ngModel)]="row.total" placeholder="Total" disabled="disabled" size="10">
+          </ng-container>
+        </mat-cell>
+      </ng-container>
 
-    <!-- Table rows -->
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; let i = index; columns: displayedColumns" [ngClass]="{'odd-row': i % 2 !== 0, 'even-row': i % 2 === 0}"></mat-row>
-  </mat-table>
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef class="actions-column">Actions</mat-header-cell>
+        <mat-cell *matCellDef="let element" class="actions-column">
+          <button mat-icon-button color="warn" (click)="onDelete(element)"><mat-icon>delete_outline</mat-icon></button>
+        </mat-cell>
+      </ng-container>
+
+      <!-- Table rows -->
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; let i = index; columns: displayedColumns" [ngClass]="{'odd-row': i % 2 !== 0, 'even-row': i % 2 === 0}"></mat-row>
+    </mat-table>
+  </div>
+
+  <!-- Total Net Calculation -->
+  <div class="total-net-container">
+    <span>Total Net (Franc CFA): {{ 0 }}</span>
+  </div>
+
+  <div class="validation-container">
+    <button mat-raised-button color="primary" (click)="onValidate()">Ajouter</button>
+    <button mat-raised-button color="primary" (click)="onValidate()">Imprimer</button>
+    <button mat-raised-button color="primary" (click)="onValidate()">Valider</button>
+  </div>
 
 </div>
