@@ -38,10 +38,10 @@
 
 .purchase-container {
   /*background-color: antiquewhite;*/
-  margin: 40px;
+  margin: 10px;
   display: flex;
   justify-content: space-between;
-  gap: 30px;
+  gap: 5px;
   flex-direction: column;
 }
 
@@ -78,6 +78,7 @@
   color: white;
   background-color: #0B610B;
   font-size: 14px;
+  font-weight: bold;
 }
 
 .mdc-data-table__cell, .mdc-data-table__header-cell {
@@ -88,4 +89,37 @@ mat-cell , mat-header-cell, mat-footer-cell {
    flex-grow: 0;
    flex-shrink: 0;
    flex-basis: auto;
+}
+
+.selection-fournisseur {
+  width: 300px; /* Increase width */
+  height: 40px; /* Increase height */
+  padding: 10px; /* Padding inside the select */
+  font-size: 16px; /* Larger font size */
+  border-radius: 4px; /* Rounded corners */
+  border: 1px solid #ccc; /* Border color */
+  background-color: #fff; /* Background color */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for better look */
+}
+
+/* Optional: hover or focus effects */
+.selection-fournisseur:hover, .selection-fournisseur:focus {
+  border-color: #3f51b5; /* Highlight border on hover or focus */
+  outline: none; /* Remove default outline */
+}
+
+.purchase-title {
+  display: flex;
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.content-command {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+  background-color: yellow;
+  padding: 20px;
+  border-radius: 10px;
 }
