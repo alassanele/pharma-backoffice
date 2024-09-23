@@ -138,3 +138,9 @@ mat-select {
 .mat-select-placeholder {
   /*color: #9e9e9e;*/
 }
+
+
+.total-net-container {
+  font-size: 14px;
+  font-weight: bold;
+}

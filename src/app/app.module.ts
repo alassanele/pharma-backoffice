@@ -28,6 +28,7 @@ import { MY_DATE_FORMATS } from './models/date-format';
 import { DatePipe } from '@angular/common';
 import { PurchaseComponent } from './components/purchase/purchase.component';
 import { MatSelectModule } from '@angular/material/select';
+import { CurrencyXofPipe } from './pipe/currency-xof.pipe';
 
 
 @NgModule({
@@ -43,6 +44,7 @@ import { MatSelectModule } from '@angular/material/select';
     SupplierComponent,
     ModalPopupSupplierComponent,
     PurchaseComponent,
+    CurrencyXofPipe,
   ],
   imports: [
     BrowserModule,

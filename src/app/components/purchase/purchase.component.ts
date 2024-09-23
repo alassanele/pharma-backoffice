@@ -35,6 +35,8 @@ export class PurchaseComponent implements OnInit{
 
   selectedSupplier: number
 
+  totalNet: number = 0;
+
   //command: Command;
 
   //lineCommands: LineCommand[] = []
@@ -78,6 +80,7 @@ export class PurchaseComponent implements OnInit{
   calculateTotal(row: any): void {
     const discountMultiplier = row.discount ? (100 - row.discount) / 100 : 1;
     row.total = row.quantity * row.unitPrice * discountMultiplier;
+    this.totalNet = this.dataSource.reduce((acc, product) => acc + product.total, 0);
   }
 
   onSupplierChange(event: MatSelectChange): void {
@@ -113,24 +116,31 @@ export class PurchaseComponent implements OnInit{
   }
 
   private buildCommand(): Command {
-    const command = new Command();
+    const command = new Command(this.buildLineCommands(),"20/09/2024", this.selectedSupplier, this.totalNet);
+    /*
     command.lineCommands = this.buildLineCommands();
     command.supplierId = this.selectedSupplier;
     command.commandDate = "20/09/2024";
+    command.totalNet = this.totalNet;
+     */
     return command;
   }
 
   private buildLineCommands(): LineCommand[] {
-    return this.dataSource.map(row => this.buildLineCommand(row));
+    return this.dataSource.map(row => new LineCommand(row.id, row.quantity, row.total));
   }
+
+  /*
 
   private buildLineCommand(row: any): LineCommand {
-    const lineCommand = new LineCommand();
+    const lineCommand = new LineCommand(row.id, row.quantity);
+
     lineCommand.quantity = row.quantity;
     lineCommand.productId = row.id;
+
     return lineCommand;
   }
-
+*/
 
 
 

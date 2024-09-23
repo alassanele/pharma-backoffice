@@ -6,5 +6,11 @@ export class Command {
   lineCommands:Array<LineCommand>;
   commandDate: String;
   supplierId: number;
-  //supplier: Supplier;
+  totalAmount:number
+  constructor(lineCommands:Array<LineCommand>, commandDate: String, supplierId: number, totalAmount:number) {
+    this.lineCommands = lineCommands;
+    this.commandDate = commandDate;
+    this.supplierId = supplierId;
+    this.totalAmount = totalAmount;
+  }
 }

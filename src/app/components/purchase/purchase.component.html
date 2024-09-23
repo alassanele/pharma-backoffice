@@ -3,17 +3,8 @@
     <label>Nouvelle commande</label>
   </div>
   <div class="content-command">
-    <!--
-    <div class="label-fournisseur-container">
-      <label>Fournisseur : </label>
-      <select [(ngModel)]="selectedSupplier" (change)="onSupplierChange($event)" class="selection-fournisseur">
-        <option *ngFor="let supplier of suppliers" [value]="supplier.id">{{ supplier.name }}</option>
-      </select>
-    </div>
-    -->
-
     <mat-form-field appearance="fill">
-      <mat-label>Fournisseur</mat-label>
+      <mat-label>Choisir un fournisseur</mat-label>
       <mat-select [(ngModel)]="selectedSupplier" (selectionChange)="onSupplierChange($event)">
         <mat-option *ngFor="let supplier of suppliers" [value]="supplier.id">
           {{ supplier.name }}
@@ -40,7 +31,7 @@
 
         <ng-container matColumnDef="unitPrice">
           <mat-header-cell *matHeaderCellDef class="unit-price-column">Prix unitaire (Franc CFA)</mat-header-cell>
-          <mat-cell *matCellDef="let row" class="unit-price-column">{{row.unitPrice}}</mat-cell>
+          <mat-cell *matCellDef="let row" class="unit-price-column">{{row.unitPrice | currencyXof}}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="discount">
@@ -50,11 +41,7 @@
 
         <ng-container matColumnDef="total">
           <mat-header-cell *matHeaderCellDef class="total-column">Total (Franc CFA)</mat-header-cell>
-          <mat-cell *matCellDef="let row" class="total-column">
-            <ng-container>
-              <input [(ngModel)]="row.total" placeholder="Total" disabled="disabled" size="10">
-            </ng-container>
-          </mat-cell>
+          <mat-cell *matCellDef="let row" class="total-column">{{row.total | currencyXof}}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="actions">
@@ -72,7 +59,7 @@
 
     <!-- Total Net Calculation -->
     <div class="total-net-container">
-      <span>Total Net (Franc CFA): {{ 0 }}</span>
+      <span>Total Net (Franc CFA): {{ totalNet | currencyXof}}</span>
     </div>
 
     <div class="validation-container">
