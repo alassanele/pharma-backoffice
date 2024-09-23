@@ -3,12 +3,23 @@
     <label>Nouvelle commande</label>
   </div>
   <div class="content-command">
+    <!--
     <div class="label-fournisseur-container">
       <label>Fournisseur : </label>
       <select [(ngModel)]="selectedSupplier" (change)="onSupplierChange($event)" class="selection-fournisseur">
         <option *ngFor="let supplier of suppliers" [value]="supplier.id">{{ supplier.name }}</option>
       </select>
     </div>
+    -->
+
+    <mat-form-field appearance="fill">
+      <mat-label>Fournisseur</mat-label>
+      <mat-select [(ngModel)]="selectedSupplier" (selectionChange)="onSupplierChange($event)">
+        <mat-option *ngFor="let supplier of suppliers" [value]="supplier.id">
+          {{ supplier.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
 
     <div class="table-product">
       <mat-table mat-table [dataSource]="dataSource">
@@ -65,9 +76,9 @@
     </div>
 
     <div class="validation-container">
-      <button mat-raised-button color="primary" (click)="onValidate()">Ajouter</button>
-      <button mat-raised-button color="primary" (click)="onValidate()">Imprimer</button>
-      <button mat-raised-button color="primary" (click)="onValidate()">Valider</button>
+      <button mat-raised-button color="primary" (click)="onSave()">Ajouter</button>
+      <button mat-raised-button color="primary" (click)="onSave()">Imprimer</button>
+      <button mat-raised-button color="primary" (click)="onSave()">Sauvegarder</button>
     </div>
   </div>
 

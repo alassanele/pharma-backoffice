@@ -1,12 +1,24 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 
+import { DatePipe } from '@angular/common'
+
 import { Purchase } from '../../models/purchase';
 
 import { Supplier } from '../../models/supplier';
 
+import { Command } from '../../models/command';
+
+import { Product } from '../../models/product';
+
+import { LineCommand } from '../../models/line-command';
+
 import { ProductService } from '../../services/product.service';
 
 import { SupplierService } from '../../services/supplier.service';
+
+import { CommandService } from '../../services/command.service';
+
+import { MatSelectChange } from '@angular/material/select';
 
 @Component({
   selector: 'app-purchase',
@@ -20,11 +32,17 @@ export class PurchaseComponent implements OnInit{
   dataSource: Purchase[] = [];
 
   suppliers:Supplier[] = [];
-  
-  selectedSupplier: number | null = null;
+
+  selectedSupplier: number
+
+  //command: Command;
+
+  //lineCommands: LineCommand[] = []
 
   constructor(private productService: ProductService,
-              private supplierService: SupplierService,) {
+              private supplierService: SupplierService,
+              private commandService: CommandService,
+              public datepipe: DatePipe,) {
   }
 
   ngOnInit(): void {
@@ -62,10 +80,10 @@ export class PurchaseComponent implements OnInit{
     row.total = row.quantity * row.unitPrice * discountMultiplier;
   }
 
-  // Optional: Method to handle the change event
-  onSupplierChange(event: Event) {
-    const supplierElement = event.target as HTMLSelectElement;
-    this.selectedSupplier = Number(supplierElement.id);
+  onSupplierChange(event: MatSelectChange): void {
+    console.log('Selected supplier ID:', event.value);
+    console.log('Source MatSelect component:', event.source);
+    this.selectedSupplier = event.value;
   }
 
   /*
@@ -85,9 +103,36 @@ export class PurchaseComponent implements OnInit{
     this.editedRowIndex = -1;
   }*/
 
-  onValidate() {
-    console.log('Saving row', this.dataSource);
+  onSave() {
+    const command = this.buildCommand();
+    console.log("Command to save:", command);
+    this.commandService.saveCommand(command).subscribe(
+      result => console.log('Command saved:', result),
+      error => console.error('Error saving command:', error)
+    );
   }
+
+  private buildCommand(): Command {
+    const command = new Command();
+    command.lineCommands = this.buildLineCommands();
+    command.supplierId = this.selectedSupplier;
+    command.commandDate = "20/09/2024";
+    return command;
+  }
+
+  private buildLineCommands(): LineCommand[] {
+    return this.dataSource.map(row => this.buildLineCommand(row));
+  }
+
+  private buildLineCommand(row: any): LineCommand {
+    const lineCommand = new LineCommand();
+    lineCommand.quantity = row.quantity;
+    lineCommand.productId = row.id;
+    return lineCommand;
+  }
+
+
+
 
 
 }
