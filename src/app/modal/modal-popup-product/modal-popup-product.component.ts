@@ -13,13 +13,13 @@ import { ProductService } from '../../services/product.service';
 })
 export class ModalPopupProductComponent implements OnInit{
 
+  @ViewChild('currentProduct') currentProduct: MatSelectionList;
+
   products: Product[];
 
   selectedProducts:Product[] = [];
 
   idProductsSeleted:number[] = [];
-
-  @ViewChild('currentProduct') currentProduct: MatSelectionList;
 
   constructor(public dialogRef: MatDialogRef<ModalPopupProductComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any,
@@ -28,7 +28,6 @@ export class ModalPopupProductComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    console.log('Data:', this.data);
     this.initProducts();
     this.selectedProducts = [];
   }

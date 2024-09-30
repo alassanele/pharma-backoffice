@@ -9,7 +9,6 @@ import { Command } from '../../models/command';
 import { Product } from '../../models/product';
 import { LineCommand } from '../../models/line-command';
 
-import { ProductService } from '../../services/product.service';
 import { SupplierService } from '../../services/supplier.service';
 import { CommandService } from '../../services/command.service';
 
@@ -40,25 +39,22 @@ export class PurchaseComponent implements OnInit{
 
   idProductsSeleted:number[] = [];
 
-  constructor(private productService: ProductService,
-              private supplierService: SupplierService,
+  constructor(private supplierService: SupplierService,
               private commandService: CommandService,
               public datepipe: DatePipe,
               private dialog: MatDialog) {
   }
 
   ngOnInit(): void {
-    //this.dataSource = [];
-    this.getProducts(this.selectedProducts);
+    this.initProducts();
     this.supplierService.getSuppliers().subscribe(result => {
       this.suppliers = result;
     });
     console.log('dataSource:', 1);
   }
 
-  getProducts(selectedProducts:Product[]){
-    console.log('selectedProducts:', selectedProducts);
-    selectedProducts.forEach(product => {
+  initProducts(){
+    this.selectedProducts.forEach(product => {
       this.dataSource.push({
         id: product.id,
         label: product.label,
@@ -68,7 +64,9 @@ export class PurchaseComponent implements OnInit{
         total: 0
       });
     });
-    this.table.renderRows();
+    if(this.selectedProducts.length > 0){
+      this.table.renderRows();
+    }
   }
 
   onDelete(row: Purchase){
@@ -112,13 +110,10 @@ export class PurchaseComponent implements OnInit{
       data: this.idProductsSeleted,
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log('dataSource:', 2);
-      console.log('The dialog was closed');
       if (result) {
-        //this.selectedProducts = result;
-        this.getProducts(result);
+        this.selectedProducts = result;
+        this.initProducts();
       }
-      console.log('dataSource:', this.dataSource);
     });
   }
 }
