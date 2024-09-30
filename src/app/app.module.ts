@@ -29,6 +29,8 @@ import { DatePipe } from '@angular/common';
 import { PurchaseComponent } from './components/purchase/purchase.component';
 import { MatSelectModule } from '@angular/material/select';
 import { CurrencyXofPipe } from './pipe/currency-xof.pipe';
+import { ModalPopupProductComponent } from './modal/modal-popup-product/modal-popup-product.component';
+import { MatListModule } from '@angular/material/list';
 
 
 @NgModule({
@@ -45,6 +47,7 @@ import { CurrencyXofPipe } from './pipe/currency-xof.pipe';
     ModalPopupSupplierComponent,
     PurchaseComponent,
     CurrencyXofPipe,
+    ModalPopupProductComponent,
   ],
   imports: [
     BrowserModule,
@@ -62,6 +65,7 @@ import { CurrencyXofPipe } from './pipe/currency-xof.pipe';
     MatDatepickerModule,
     MatNativeDateModule,
     MatSelectModule,
+    MatListModule,
   ],
   providers: [
     provideAnimationsAsync(),

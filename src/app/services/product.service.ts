@@ -29,4 +29,12 @@ export class ProductService {
   deleteProduct(idProduct: number) {
     return this.http.delete(this.apiurl+'/'+idProduct);
   }
+
+  getProductWithoutIds(ids:String): Observable<Product[]> {
+    console.log('ids:', ids);
+    if(ids == null || ids == ""){
+      return this.getProducts();
+    }
+    return this.http.get<Product[]>(this.apiurl+"/exclude/"+ids);
+  }
 }

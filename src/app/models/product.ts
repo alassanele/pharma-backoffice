@@ -9,4 +9,5 @@ export class Product {
   tva: string;
   quantiteStock: number;
   expirationDate: Date;
+  selected: boolean;
 }

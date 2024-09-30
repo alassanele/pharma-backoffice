@@ -1,0 +1,11 @@
+<h2 mat-dialog-title>Select Products</h2>
+<mat-dialog-content>
+  <mat-selection-list #currentProduct (selectionChange)="getSelectedProducts()">
+    <mat-list-option *ngFor="let product of products" [value]="product">{{ product.label }}</mat-list-option>
+  </mat-selection-list>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-button color="primary" (click)="onConfirm()">Confirm</button>
+</mat-dialog-actions>
