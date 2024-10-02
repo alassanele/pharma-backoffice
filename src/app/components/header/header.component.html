@@ -2,14 +2,38 @@
   <div class="logo">
    <!-- <img src="assets/images/logo-pharmacie.jpg" alt="logo"> -->
   </div>
+  <!--
   <div class="nav-bar">
     <ul>
       <li><a  routerLink="/dashboard">Tableau de bord</a></li>
-      <!-- <li><a  routerLink="/clients">Clients</a></li> -->
+      <li><a  routerLink="/clients">Clients</a></li>
       <li><a  routerLink="/products">Produits</a></li>
       <li><a  routerLink="/suppliers">Fournisseurs</a></li>
       <li><a  routerLink="/purchase">Achats</a></li>
       <li><a  routerLink="/ventes">Ventes</a></li>
     </ul>
   </div>
+  -->
+  <div class="navbar">
+    <a href="/dashboard">Tableau de bord</a>
+    <a href="/clients">Clients</a>
+    <a href="/products">Produits</a>
+    <a href="/suppliers">Fournisseurs</a>
+    <div class="subnav">
+      <button class="subnavbtn">Achats<i class="fa fa-caret-down"></i></button>
+      <div class="subnav-content">
+        <a routerLink="/purchase">Nouvelle Commande</a><br/>
+        <a routerLink="/handle-command">Gestion de commandes</a><br/>
+      </div>
+    </div>
+    <div class="subnav">
+      <button class="subnavbtn">Ventes <i class="fa fa-caret-down"></i></button>
+      <div class="subnav-content">
+        <a href="#new-sale">Nouvelle vente</a><br/>
+        <a href="#handle-sale">Gestion de ventes</a><br/>
+      </div>
+    </div>
+    <a href="#contact">Contact</a>
+  </div>
+
 </header>

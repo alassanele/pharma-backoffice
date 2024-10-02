@@ -31,6 +31,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { CurrencyXofPipe } from './pipe/currency-xof.pipe';
 import { ModalPopupProductComponent } from './modal/modal-popup-product/modal-popup-product.component';
 import { MatListModule } from '@angular/material/list';
+import { MatMenuModule } from '@angular/material/menu';
 
 
 @NgModule({
@@ -66,6 +67,7 @@ import { MatListModule } from '@angular/material/list';
     MatNativeDateModule,
     MatSelectModule,
     MatListModule,
+    MatMenuModule
   ],
   providers: [
     provideAnimationsAsync(),
