@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ContainerComponent } from './components/container/container.component';
-import { ProductComponent } from './components/product/product.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { ProductItemComponent } from './components/product-list/product-item/product-item.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
@@ -40,7 +39,6 @@ import { MatMenuModule } from '@angular/material/menu';
     HeaderComponent,
     FooterComponent,
     ContainerComponent,
-    ProductComponent,
     ProductListComponent,
     ProductItemComponent,
     ModalPopupComponent,

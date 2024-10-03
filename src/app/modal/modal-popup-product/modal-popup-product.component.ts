@@ -55,4 +55,8 @@ export class ModalPopupProductComponent implements OnInit{
   getSelectedProducts() {
     this.selectedProducts = this.currentProduct.selectedOptions.selected.map(option => option.value);
   }
+
+  closeDialog(): void {
+    this.onCancel();
+  }
 }

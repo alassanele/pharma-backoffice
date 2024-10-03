@@ -6,3 +6,42 @@
 .mat-dialog-actions {
   margin-top: 10px;
 }
+
+.mat-dialog-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ccc;
+}
+
+.mat-dialog-body {
+  padding: 20px;
+}
+
+mat-list-option:nth-child(even) {
+  background-color: #97DFC6;
+}
+
+mat-list-option:nth-child(odd) {
+  background-color: #B0F2B6;
+}
+
+mat-list-option:nth-child(even) {
+  color: #333;
+}
+
+mat-list-option:nth-child(odd) {
+  color: #666;
+}
+
+
+.mdc-list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.container-dialog {
+  background-color: #D8F781;
+}
+
