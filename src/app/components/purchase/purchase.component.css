@@ -8,7 +8,7 @@
 
 /* Label Column */
 .label-column {
-  width: 35%; /* 30% width */
+  width: 30%; /* 30% width */
 }
 
 /* Quantity Column */
@@ -33,7 +33,7 @@
 
 /* Actions Column */
 .actions-column {
-  width: 5%; /* 10% width */
+  width: 10%; /* 10% width */
 }
 
 .purchase-container {
@@ -82,7 +82,6 @@
 }
 
 .mdc-data-table__cell, .mdc-data-table__header-cell {
-  padding: 0;
 }
 
 mat-cell , mat-header-cell, mat-footer-cell {
@@ -143,4 +142,33 @@ mat-select {
 .total-net-container {
   font-size: 14px;
   font-weight: bold;
+}
+
+.validation-container button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.validation-container button:hover {
+  background-color: #0056b3; /* Change la couleur au survol */
+}
+
+.validation-container button:active {
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); /* Ombre plus petite au clic */
+  transform: translateY(2px); /* Légère animation de pression */
+}
+
+.validation-container button:first-child {
+  background-color: #1976d2; /* Couleur de fond pour le bouton 'Ajouter' */
+}
+
+.validation-container button:nth-child(2) {
+  background-color: #388e3c; /* Couleur de fond pour le bouton 'Imprimer' */
+}
+
+.validation-container button:last-child {
+  background-color: #fbc02d; /* Couleur de fond pour le bouton 'Sauvegarder' */
 }

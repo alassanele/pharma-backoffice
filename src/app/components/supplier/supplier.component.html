@@ -1,4 +1,4 @@
-<div class="list-product">
+<div class="list-supplier">
   <div class="search-div">
     <button mat-raised-button (click)="onCreate()">
       <mat-icon>add</mat-icon>Créer un fournisseur
@@ -16,32 +16,32 @@
 
       <!-- Label Column -->
       <ng-container matColumnDef="name">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Nom </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header  class="name-column"> Nom </mat-header-cell>
+        <mat-cell *matCellDef="let element"  class="name-column"> {{element.name}} </mat-cell>
       </ng-container>
 
       <!-- Label Column -->
       <ng-container matColumnDef="adress">
-        <mat-header-cell *matHeaderCellDef> Adresse </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.address}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef class="address-column"> Adresse </mat-header-cell>
+        <mat-cell *matCellDef="let element" class="address-column"> {{element.address}} </mat-cell>
       </ng-container>
 
       <!-- Label Column -->
       <ng-container matColumnDef="numberPhone">
-        <mat-header-cell *matHeaderCellDef> Numéro téléphone </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.numberPhone}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef class="phone-column"> Numéro téléphone </mat-header-cell>
+        <mat-cell *matCellDef="let element" class="phone-column"> {{element.numberPhone}} </mat-cell>
       </ng-container>
 
       <!-- Label Column -->
       <ng-container matColumnDef="email" >
-        <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.email}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef class="email-column"> Email </mat-header-cell>
+        <mat-cell *matCellDef="let element" class="email-column"> {{element.email}} </mat-cell>
       </ng-container>
 
       <!-- Label Column -->
       <ng-container matColumnDef="actions">
-        <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
-        <mat-cell *matCellDef="let element">
+        <mat-header-cell *matHeaderCellDef class="actions-column">Actions</mat-header-cell>
+        <mat-cell *matCellDef="let element" class="actions-column">
           <button mat-icon-button (click)="onEdit(element)" style="margin-right: 5px;"><mat-icon>launch</mat-icon></button>
           <button mat-icon-button color="warn" (click)="onDelete(element)"><mat-icon>delete_outline</mat-icon></button>
         </mat-cell>
@@ -66,7 +66,7 @@
 
       <!-- Header and Row Declarations -->
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      <mat-row *matRowDef="let row; let i = index; columns: displayedColumns" [ngClass]="{'odd-row': i % 2 !== 0, 'even-row': i % 2 === 0}"></mat-row>
 
       <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{ 'hide':dataSource!=null}"></mat-footer-row>
 

@@ -37,13 +37,13 @@
       <!-- Label Column -->
       <ng-container matColumnDef="sectionPrice">
         <mat-header-cell *matHeaderCellDef> Prix d'achat </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.sectionPrice}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{element.sectionPrice | currencyXof}} </mat-cell>
       </ng-container>
 
       <!-- Label Column -->
       <ng-container matColumnDef="publicPrice" >
         <mat-header-cell *matHeaderCellDef> Prix de vente </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.publicPrice}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{element.publicPrice | currencyXof}} </mat-cell>
       </ng-container>
 
       <!-- Label Column -->
@@ -103,7 +103,7 @@
 
       <!-- Header and Row Declarations -->
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      <mat-row *matRowDef="let row; let i = index; columns: displayedColumns" [ngClass]="{'odd-row': i % 2 !== 0, 'even-row': i % 2 === 0}"></mat-row>
 
     <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{ 'hide':dataSource!=null}"></mat-footer-row>
 

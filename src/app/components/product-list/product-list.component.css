@@ -44,4 +44,22 @@ mat-footer-row mat-footer-cell {
   width: 32px;
 }
 
+.odd-row {
+  background-color: #B0F2B6;
+}
 
+.even-row {
+  background-color: #97DFC6;
+}
+
+.mat-mdc-table {
+  background-color: #ECF8E0;
+  font-size: 30px;
+}
+
+.mat-mdc-header-row {
+  color: white;
+  background-color: #0B610B;
+  font-size: 14px;
+  font-weight: bold;
+}
