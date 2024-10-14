@@ -78,8 +78,7 @@ export class PurchaseComponent implements OnInit{
   }
 
   calculateTotal(row: any): void {
-    const discountMultiplier = row.discount ? (100 - row.discount) / 100 : 1;
-    row.total = row.quantity * row.unitPrice * discountMultiplier;
+    row.total = row.quantity * row.unitPrice;
     this.totalNet = this.dataSource.reduce((acc, product) => acc + product.total, 0);
   }
 

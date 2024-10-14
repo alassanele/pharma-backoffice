@@ -2,18 +2,16 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
+import {MatSort} from '@angular/material/sort';
 
 import { Product } from '../../models/product';
-
 import { LineSold } from '../../models/line-sold';
 import { Sale } from '../../models/sale';
 
 import { ProductService } from '../../services/product.service';
 import { SaleService } from '../../services/sale.service';
-
-import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
-import {MatSort} from '@angular/material/sort';
 
 @Component({
   selector: 'app-sale',
@@ -22,25 +20,23 @@ import {MatSort} from '@angular/material/sort';
 })
 export class SaleComponent implements OnInit{
 
-  productControl = new FormControl();
+  @ViewChild(MatSort) sort: MatSort;
 
-  displayedColumns: string[] = ['label', 'quantity', 'unitPrice', 'totalAmount', 'actions'];
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   products:Product[] = [];
 
   filteredProducts: Observable<Product[]>;
 
-  selectedProducts: Product[] = [];
-
-  lineSolds: LineSold[] = [];
-
   dataSource = new MatTableDataSource<LineSold>;
 
   productMap: Map<number, Product> = new Map<number, Product>();
 
-  @ViewChild(MatSort) sort: MatSort;
+  displayedColumns: string[] = ['label', 'quantity', 'unitPrice', 'totalAmount', 'actions'];
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+  productControl = new FormControl();
+
+  totalNet: number = 0;
 
   constructor(private productService: ProductService,
               private saleService: SaleService) {
@@ -52,13 +48,14 @@ export class SaleComponent implements OnInit{
       startWith(''),
       map(value => this.filterProducts(value))
     );
-    console.log('dataSource:', 1);
-    this.buildMapIdLabel();
   }
 
   initProducts(){
     this.productService.getProducts().subscribe(result => {
       this.products = result;
+      result.forEach(product => {
+        this.productMap.set(product.id, product);
+      });
     });
   }
 
@@ -70,61 +67,42 @@ export class SaleComponent implements OnInit{
     const selectedProductName = this.productControl.value;
     const selectedProduct = this.products.find(product => product.label === selectedProductName);
 
-    if (selectedProduct && !this.selectedProducts.includes(selectedProduct)) {
-      this.selectedProducts.push(selectedProduct);
-      this.lineSolds.push({
+    if (selectedProduct) {
+      this.dataSource.data.push({
         id: selectedProduct.id,
         productId: selectedProduct.id,
         quantiteVendu: 0,
         totalAmount: 0
       });
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
       this.productControl.reset();
+      this.products = this.products.filter(product => product !== selectedProduct);
     }
-
-    //Mettre à jour la liste des produits sélectionnés cette liste en enlevant le produit sélectionné
-
-    this.dataSource = new MatTableDataSource<LineSold>(this.lineSolds)
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
   }
 
   onDelete(row: LineSold){
-    const filteredData = this.dataSource.data.filter(lineSold => lineSold.productId !== row.productId);
-    this.dataSource.data = filteredData;
+    this.dataSource.data = this.dataSource.data.filter(lineSold => lineSold.productId !== row.productId);;
+    this.totalNet = this.dataSource.data.reduce((acc, lineSold) => acc + lineSold.totalAmount, 0);
   }
 
-  onQuantityChange(row: any): void {
-    this.calculateTotal(row);
-  }
-
-  calculateTotal(row: LineSold): void {
+  onQuantityChange(row: LineSold): void {
     row.totalAmount = row.quantiteVendu * Number(this.getPublicPriceProduct(row.productId));
+    this.totalNet = this.dataSource.data.reduce((acc, lineSold) => acc + lineSold.totalAmount, 0);
   }
 
   onSave(){
-    console.log('this.dataSource.data:', this.dataSource.data);
-    this.saleService.saveSale(new Sale(this.dataSource.data,"20/09/2024", 0)).subscribe(
+    this.saleService.saveSale(new Sale(this.dataSource.data,"20/09/2024", this.totalNet)).subscribe(
       result => console.log('Sale saved:', result),
       error => console.error('Error saving command:', error)
     );
   }
 
-  buildMapIdLabel(): void {
-    this.productService.getProducts().subscribe(result => {
-      result.forEach(product => {
-        this.productMap.set(product.id, product);
-      });
-    });
-    console.log('productMap:', this.productMap);
-  }
-
   getLabelProduct(idProduct: number): string {
-    const product = this.productMap?.get(idProduct);
-    return product?.label || '';
+    return this.productMap?.get(idProduct)?.label || '';
   }
 
   getPublicPriceProduct(idProduct: number): number {
-    const product = this.productMap?.get(idProduct);
-    return Number(product?.publicPrice) || 0;
+    return Number(this.productMap?.get(idProduct)?.publicPrice) || 0;
   }
 }

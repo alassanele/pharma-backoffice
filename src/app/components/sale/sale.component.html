@@ -51,6 +51,10 @@
       <mat-row *matRowDef="let row; let i = index; columns: displayedColumns" [ngClass]="{'odd-row': i % 2 !== 0, 'even-row': i % 2 === 0}"></mat-row>
     </mat-table>
   </div>
+  <!-- Total Net Calculation -->
+  <div class="total-net-container">
+    <span>Total Net (Franc CFA): {{ totalNet | currencyXof}}</span>
+  </div>
   <div class="validation-container">
     <button mat-raised-button color="primary" (click)="onSave()">Sauvegarder</button>
   </div>
