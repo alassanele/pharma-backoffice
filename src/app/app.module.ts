@@ -31,6 +31,12 @@ import { CurrencyXofPipe } from './pipe/currency-xof.pipe';
 import { ModalPopupProductComponent } from './modal/modal-popup-product/modal-popup-product.component';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
+import { SaleComponent } from './components/sale/sale.component';
+import { CommandListComponent } from './components/command-list/command-list.component';
+import { SaleListComponent } from './components/sale-list/sale-list.component';
+import { StockComponent } from './components/stock/stock.component';
+import { ProdcutAddComponent } from './components/prodcut-add/prodcut-add.component';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 
 @NgModule({
@@ -47,6 +53,11 @@ import { MatMenuModule } from '@angular/material/menu';
     PurchaseComponent,
     CurrencyXofPipe,
     ModalPopupProductComponent,
+    SaleComponent,
+    CommandListComponent,
+    SaleListComponent,
+    StockComponent,
+    ProdcutAddComponent,
   ],
   imports: [
     BrowserModule,
@@ -65,7 +76,8 @@ import { MatMenuModule } from '@angular/material/menu';
     MatNativeDateModule,
     MatSelectModule,
     MatListModule,
-    MatMenuModule
+    MatMenuModule,
+    MatAutocompleteModule,
   ],
   providers: [
     provideAnimationsAsync(),

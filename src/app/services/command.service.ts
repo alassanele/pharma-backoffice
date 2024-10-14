@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { Product } from '../models/product';
 import { Command } from '../models/command';
 
 @Injectable({
@@ -15,19 +14,19 @@ export class CommandService {
   constructor(private http: HttpClient) {
   }
 
-  getProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(this.apiurl);
+  getCommands(): Observable<Command[]> {
+    return this.http.get<Command[]>(this.apiurl);
   }
 
-  editProduct(idProduct: number)  {
-    return this.http.get(this.apiurl+'/'+idProduct);
+  editCommand(idCommand: number)  {
+    return this.http.get(this.apiurl+'/'+idCommand);
   }
 
   saveCommand(command: Command)  {
     return this.http.post(this.apiurl, command);
   }
 
-  deleteProduct(idProduct: number) {
-    return this.http.delete(this.apiurl+'/'+idProduct);
+  deleteCommand(idCommand: number) {
+    return this.http.delete(this.apiurl+'/'+idCommand);
   }
 }

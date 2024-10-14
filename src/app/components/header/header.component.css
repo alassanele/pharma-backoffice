@@ -66,6 +66,7 @@ header a {
   background-color: inherit;
   font-family: inherit;
   margin: 0;
+  font-weight: bold;
 }
 
 /* Add a red background color to navigation links on hover */

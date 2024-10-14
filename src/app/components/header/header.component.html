@@ -16,24 +16,28 @@
   -->
   <div class="navbar">
     <a href="/dashboard">Tableau de bord</a>
+    <!--
     <a href="/clients">Clients</a>
-    <a href="/products">Produits</a>
-    <a href="/suppliers">Fournisseurs</a>
+    -->
     <div class="subnav">
       <button class="subnavbtn">Achats<i class="fa fa-caret-down"></i></button>
       <div class="subnav-content">
         <a routerLink="/purchase">Nouvelle Commande</a><br/>
-        <a routerLink="/handle-command">Gestion de commandes</a><br/>
+        <a routerLink="/commands">Gestion de commandes</a><br/>
       </div>
     </div>
     <div class="subnav">
       <button class="subnavbtn">Ventes <i class="fa fa-caret-down"></i></button>
       <div class="subnav-content">
-        <a href="#new-sale">Nouvelle vente</a><br/>
+        <a href="new-sale">Nouvelle vente</a><br/>
         <a href="#handle-sale">Gestion de ventes</a><br/>
       </div>
     </div>
+    <a href="/products">Produits</a>
+    <a href="/suppliers">Fournisseurs</a>
+    <!--
     <a href="#contact">Contact</a>
+    -->
   </div>
 
 </header>

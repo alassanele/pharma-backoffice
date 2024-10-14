@@ -1,0 +1,60 @@
+<div class="command-container">
+  <div class="command-title">
+    <label>Les commandes</label>
+  </div>
+  <div class="content-command">
+    <div class="table-command">
+      <mat-table mat-table [dataSource]="dataSource">
+
+        <ng-container matColumnDef="label">
+          <mat-header-cell *matHeaderCellDef class="label-column">Fournisseur</mat-header-cell>
+          <mat-cell *matCellDef="let row" class="label-column">{{getLabelSupplier(row.supplierId)}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="commandDate">
+          <mat-header-cell *matHeaderCellDef class="date-command-column">Date de commande</mat-header-cell>
+          <mat-cell *matCellDef="let row" class="date-command-column">{{row.commandDate}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="totalAmount">
+          <mat-header-cell *matHeaderCellDef class="total-amount-column">Montant total</mat-header-cell>
+          <mat-cell *matCellDef="let row" class="total-amount-column">{{row.totalAmount | currencyXof}}</mat-cell>
+        </ng-container>
+
+
+
+        <!-- Label Column -->
+        <ng-container matColumnDef="actions">
+          <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <button mat-icon-button (click)="onEdit(element)" style="margin-right: 5px;"><mat-icon>visibility</mat-icon></button>
+            <button mat-icon-button color="warn" (click)="onDelete(element)"><mat-icon>print</mat-icon></button>
+          </mat-cell>
+        </ng-container>
+
+
+        <!-- Label Column -->
+
+        <ng-container matColumnDef="loading">
+          <mat-footer-cell *matFooterCellDef colspan="3">
+            Loading data...
+          </mat-footer-cell>
+        </ng-container>
+
+
+        <ng-container matColumnDef="noData">
+          <mat-footer-cell *matFooterCellDef colspan="3">
+            No data...
+          </mat-footer-cell>
+        </ng-container>
+
+
+        <!-- Table rows -->
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; let i = index; columns: displayedColumns" [ngClass]="{'odd-row': i % 2 !== 0, 'even-row': i % 2 === 0}"></mat-row>
+      </mat-table>
+      <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="[5]" showFirstLastButtons></mat-paginator>
+    </div>
+  </div>
+
+</div>

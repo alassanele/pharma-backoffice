@@ -1,5 +1,4 @@
 import { LineCommand } from './line-command';
-import { Supplier } from './supplier';
 
 export class Command {
   id: number;

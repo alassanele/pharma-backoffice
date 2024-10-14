@@ -1,0 +1,88 @@
+.product-autocomplete {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.product-autocomplete mat-form-field {
+  margin-right: 10px;
+}
+
+.selected-products {
+  margin-top: 20px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.table-product {
+  display: flex;
+  height: 500px;
+}
+
+.mat-mdc-table {
+  background-color: #ECF8E0;
+  font-size: 30px;
+}
+
+.mat-mdc-header-row {
+  color: white;
+  background-color: #0B610B;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.mdc-data-table__cell, .mdc-data-table__header-cell {
+}
+
+mat-cell , mat-header-cell, mat-footer-cell {
+  flex-grow: 0;
+  flex-shrink: 0;
+  flex-basis: auto;
+}
+
+.odd-row {
+  background-color: #B0F2B6;
+}
+
+.even-row {
+  background-color: #97DFC6;
+}
+
+.label-column {
+  width: 30%;
+}
+
+.quantity-column {
+  width: 10%;
+}
+
+.unit-price-column {
+  width: 15%;
+}
+
+.actions-column {
+  width: 10%;
+}
+
+.content-command {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+  background-color: yellow;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+mat-form-field {
+  width: 100%; /* Pour que le champ prenne toute la largeur disponible */
+}
+
+.custom-input {
+  width: 100%;
+  margin-top: 10px;
+  margin-left: 10px;
+}
