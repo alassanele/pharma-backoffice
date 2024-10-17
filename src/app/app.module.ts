@@ -7,7 +7,6 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ContainerComponent } from './components/container/container.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
-import { ProductItemComponent } from './components/product-list/product-item/product-item.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -46,7 +45,6 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     FooterComponent,
     ContainerComponent,
     ProductListComponent,
-    ProductItemComponent,
     ModalPopupComponent,
     SupplierComponent,
     ModalPopupSupplierComponent,

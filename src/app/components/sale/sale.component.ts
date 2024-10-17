@@ -9,9 +9,11 @@ import {MatSort} from '@angular/material/sort';
 import { Product } from '../../models/product';
 import { LineSold } from '../../models/line-sold';
 import { Sale } from '../../models/sale';
+import { Client } from '../../models/client';
 
 import { ProductService } from '../../services/product.service';
 import { SaleService } from '../../services/sale.service';
+import { ClientService } from '../../services/client.service';
 
 @Component({
   selector: 'app-sale',
@@ -26,7 +28,11 @@ export class SaleComponent implements OnInit{
 
   products:Product[] = [];
 
+  clients:Client[] = [];
+
   filteredProducts: Observable<Product[]>;
+
+  filteredClients: Observable<Client[]>;
 
   dataSource = new MatTableDataSource<LineSold>;
 
@@ -36,10 +42,20 @@ export class SaleComponent implements OnInit{
 
   productControl = new FormControl();
 
+  clientControl = new FormControl();
+
   totalNet: number = 0;
 
+
+  selectedTypePayment: string;
+
+  countries: string[] = ['France', 'USA', 'Canada', 'Brésil'];
+
+  typePayments: string[] = ['Espèce', 'Carte bleue'];
+
   constructor(private productService: ProductService,
-              private saleService: SaleService) {
+              private saleService: SaleService,
+              public clientService: ClientService) {
   }
 
   ngOnInit(): void {
@@ -47,6 +63,10 @@ export class SaleComponent implements OnInit{
     this.filteredProducts = this.productControl.valueChanges.pipe(
       startWith(''),
       map(value => this.filterProducts(value))
+    );
+    this.filteredClients = this.clientControl.valueChanges.pipe(
+      startWith(''),
+      map(value => this.filterClients(value))
     );
   }
 
@@ -57,10 +77,17 @@ export class SaleComponent implements OnInit{
         this.productMap.set(product.id, product);
       });
     });
+    this.clientService.getClients().subscribe(result => {
+      this.clients = result;
+    });
   }
 
   private filterProducts(value: string): Product[] {
     return this.products.filter(product => product.label.toLowerCase().includes(value));
+  }
+
+  private filterClients(value: string): Client[] {
+    return this.clients.filter(client => client.surname.toLowerCase().includes(value));
   }
 
   addProduct() {
@@ -92,7 +119,7 @@ export class SaleComponent implements OnInit{
   }
 
   onSave(){
-    this.saleService.saveSale(new Sale(this.dataSource.data,"20/09/2024", this.totalNet)).subscribe(
+    this.saleService.saveSale(new Sale(this.dataSource.data,"20/09/2024", this.totalNet, "", 0)).subscribe(
       result => console.log('Sale saved:', result),
       error => console.error('Error saving command:', error)
     );
